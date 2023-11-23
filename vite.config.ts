@@ -8,7 +8,7 @@ export default defineConfig({
   plugins: [
     vue(),
     vueJsx({
-      transformOn: true,
+      // transformOn: true,这个属性开启或者关闭感觉影响不太大呀
       mergeProps: true
       // options are passed on to @vue/babel-plugin-jsx
     }),],
