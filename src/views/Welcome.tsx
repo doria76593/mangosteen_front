@@ -5,8 +5,11 @@ export const Welcome = defineComponent({
   setup() {
     return () => (
       <div>
-        <h2>Welcome</h2>
-        <RouterView></RouterView>
+        <header></header>
+        <main>
+          <RouterView></RouterView>
+        </main>
+        <footer></footer>
       </div>
     );
   },
