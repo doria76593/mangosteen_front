@@ -1,13 +1,13 @@
-import { defineComponent, ref } from 'vue';
-import './App.module.scss';
-import { RouterLink, RouterView } from 'vue-router';
+import { defineComponent } from "vue";
+import { RouterView } from "vue-router";
+import "./App.scss"
 
 export const App = defineComponent({
   setup() {
     return () => (
-      <div>
-        <RouterView></RouterView>
+      <div class="page">
+        <RouterView />
       </div>
-    );
-  },
-});
+    )
+  }
+})

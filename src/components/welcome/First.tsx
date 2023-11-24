@@ -1,10 +1,9 @@
 import { defineComponent } from 'vue';
 import s from './First.module.scss';
-import { RouterLink } from 'vue-router';
 import pig from '../../assets/icons/pig.svg';
-
+import { RouterLink } from 'vue-router';
 export const First = defineComponent({
-  setup() {
+  setup: (props, context) => {
     return () => (
       <div class={s.wrapper}>
         <div class={s.card}>

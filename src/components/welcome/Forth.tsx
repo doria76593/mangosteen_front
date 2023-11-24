@@ -1,6 +1,6 @@
 import { defineComponent } from 'vue';
-export const Third = defineComponent({
+export const Forth = defineComponent({
   setup: (props, context) => {
-    return () => <div>Third</div>;
+    return () => <div>Forth</div>;
   },
 });

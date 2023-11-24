@@ -1,2 +1,3 @@
-import { createWebHashHistory } from 'vue-router';
-export const history = createWebHashHistory();
+import { createWebHashHistory } from "vue-router";
+
+export const history = createWebHashHistory()
