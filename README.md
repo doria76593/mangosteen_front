@@ -61,3 +61,82 @@ flex-shrink: 0; 不伸缩，默认为1
 flex-grow:1;占的比例 默认为0。当其他为0或者没有设置的时候，设置为1就会占父级元素的100%。
 ```
 
+## 插槽的一些用法
+
+1-定义插槽
+
+```typescript
+方式1
+export const First = defineComponent({
+  setup: (props, context) => {
+    const aa = {
+      icon: () => <img src={pig} />,
+      title: () => (
+        <h2>
+          会挣钱
+          <br />
+          还要会省钱
+        </h2>
+      ),
+      buttons: () => (
+        <>
+          <RouterLink class={s.fake} to="/start">
+            跳过
+          </RouterLink>
+          <RouterLink to="/welcome/2">下一页</RouterLink>
+          <RouterLink to="/start">跳过</RouterLink>
+        </>
+      ),
+    };
+    return () => <WelcomeLayout>{aa}</WelcomeLayout>;
+  },
+});
+```
+
+```typescript
+export const First = defineComponent({
+  setup: (props, context) => {
+    const aa = {
+      icon: () => <img src={pig} />,
+      title: () => (
+        <h2>
+          会挣钱
+          <br />
+          还要会省钱
+        </h2>
+      ),
+      buttons: () => (
+        <>
+          <RouterLink class={s.fake} to="/start">
+            跳过
+          </RouterLink>
+          <RouterLink to="/welcome/2">下一页</RouterLink>
+          <RouterLink to="/start">跳过</RouterLink>
+        </>
+      ),
+    };
+    return () => <WelcomeLayout v-slots={aa}></WelcomeLayout>;
+  },
+});
+```
+
+接受插槽
+
+```typescript
+export const WelcomeLayout = defineComponent({
+  setup: (props, { slots }) => {
+    console.log('slots', slots);
+    return () => (
+      <div class={s.wrapper}>
+        <div class={s.card}>
+          {/* {slots.default()} */}
+          {slots?.icon?.()}
+          {slots?.title?.()}
+        </div>
+        <div class={s.actions}>{slots?.buttons?.()}</div>
+      </div>
+    );
+  },
+});
+```
+
