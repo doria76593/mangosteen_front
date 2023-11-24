@@ -1,0 +1,500 @@
+   30  npm install express-session @types/express-session
+   31  npm install --save class-validator class-transformer
+   32  npm run start:dev
+   33  nest g resource aaa 
+   34  nest g resource bbb 
+   35  npm run start:dev
+   36  nest g guard login --no-spec --flat
+   37  npm run start:dev
+   38  nest g guard permission --no-spec --flat
+   39  npm run start:dev
+   40  npm install redis 
+   41  nest g module redis
+   42  npm run start:dev
+   43  nest g service redis --no-spec
+   44  npm run start:dev
+   45  cd ..
+   46  nest new rbac-test -p npm
+   47  cd rbac-test/
+   48  npm install --save @nestjs/typeorm typeorm mysql2
+   49  code .
+   50  nest g resource user
+   51  npm run start:dev
+   52  npm run start:dev
+   53  npm install --save class-validator class-transformer
+   54  npm run start:dev
+   55  npm install --save @nestjs/jwt
+   56  npm run start:dev
+   57  nest g resource aaa 
+   58  nest g resource bbb 
+   59  npm run start:dev
+   60  nest g guard login --no-spec --flat
+   61  npm run start:dev
+   62  nest g guard permission --no-spec --flat
+   63  npm run start:dev
+   64  npm run start:dev
+   65  npx create-react-app --template=typescript refresh_token_test
+   66  cd refresh_token_test/
+   67  npm install --save axios
+   68  code .
+   69  npm run start
+   70  nest new access_token_and_refresh_token -p npm
+   71  cd access_token_and_refresh_token/
+   72  code .
+   73  nest g resource user --no-spec
+   74  npm install --save @nestjs/typeorm typeorm mysql2
+   75  npm run start:dev
+   76  npm install --save @nestjs/jwt
+   77  npm run start:dev
+   78  nest g guard login --flat --no-spec
+   79  npm run start:dev
+   80  npm run start:dev
+   81  cd ..
+   82  mkdir config-test
+   83  cd config-test/
+   84  npm init -y
+   85  npm install dotenv
+   86  code .
+   87  node index.js 
+   88  node index.js 
+   89  node index.js 
+   90  node index.js 
+   91  node index.js  NODE_ENVIRONMENT="production"
+   92  node -e -h
+   93  npm install js-yaml
+   94  node index2.js 
+   95  cwd
+   96  pwd
+   97  cd ..
+   98  nest new nest-config-test -p npm
+   99  cd nest-config-test/
+  100  code .
+  101  npm install --save @nestjs/config
+  102  npm run start:dev
+  103  cd ..
+  104  nest new docker-compose-test -p npm
+  105  cd docker-compose-test/
+  106  code .
+  107  npm install --save @nestjs/typeorm typeorm mysql2
+  108  nest -h
+  109  nest resource -h
+  110  nest resource --help
+  111  nest g resource aaa --no-spec
+  112  npm run start:dev
+  113  npm install redis 
+  114  npm run start:dev
+  115  docker build -t eee .
+  116  docker run -d -p 3306:3306 -v D:cs/mysql:/var/lib/mysql --name mysql-container mysql
+  117  docker logs mysql-container
+  118  ipconfig
+  119  npm run start:dev
+  120  docker build -t eee .
+  121  docker build -t eee .
+  122  npm run start
+  123  npx nest new nest-app -p npm
+  124  cd nest-app/
+  125  npm run start:dev
+  126  code .
+  127  npm run start:dev
+  128  cd ..
+  129  npx nest new gray_test -p npm
+  130  cd gray_test/
+  131  code .
+  132  npm run start
+  133  nest new redis-session-test -p npm
+  134  cd redis-session-test/
+  135  npm install --save redis
+  136  code .
+  137  nest g module redis
+  138  nest g service redis
+  139  nest g module session
+  140  nest g service session --no-spec
+  141  npm install --save cookie-parser
+  142  nest new redis-session-test -p npm
+  143  cd redis-session-test/
+  144  code .
+  145  npm install --save redis
+  146  nest g module redis
+  147  nest g service redis
+  148  nest g module session
+  149  nest g service session --no-spec
+  150  npm install --save cookie-parser
+  151  npm run stert:dev
+  152  npm run start:dev
+  153  geodist loc guangguang dongdong
+  154  cd ..
+  155  nest new nearby-search
+  156  cd nearby-search/
+  157  code .
+  158  npm install --save redis
+  159  nest g module redis
+  160  nest g service redis
+  161  npm run start:dev
+  162  nest new swagger-test -p npm
+  163  cd swagger-test/
+  164  npm install --save @nestjs/swagger
+  165  code .
+  166  npm run start:dev
+  167  code ..
+  168  cd ..
+  169  cd ..
+  170  mkdir nodeCs
+  171  cd nodeCs/
+  172  code .
+  173  node index.js 
+  174  npm init -y
+  175  npm install nodemailer --save
+  176  npm init -y
+  177  node index.js 
+  178  node index.js 
+  179  node index.js 
+  180  node index.js 
+  181  node index.js 
+  182  node index.js 
+  183  npm i imap
+  184  node index3.js 
+  185  node index3.js 
+  186  npm i mailparser
+  187  node index3.js 
+  188  node index3.js 
+  189  node index3.js 
+  190  node index3.js 
+  191  cd ..
+  192  npx create-react-app email-login-frontend
+  193  cd email-login-frontend/
+  194  npm run start
+  195  npm install antd --save
+  196  npm run start
+  197  npm install --save axios
+  198  npm run start
+  199  tail -f ./log
+  200  node src/cs.js 
+  201  node src/cs.js 
+  202  cd src
+  203  const { exec } = require("child_process");
+  204  const childProcess = exec('tail -f ./log');
+  205  childProcess.stdout.on('data', (msg) => {
+  206      console.log(msg);
+  207  });
+  208  node cs.js 
+  209  npx create-react-app --template=typescript sse-test-frontend
+  210  cd sse-test-frontend/
+  211  npm run start
+  212  code .
+  213  npm run start
+  214  npm run start
+  215  npm run start
+  216  cd ..
+  217  npx create-react-app gif-compression-frontend
+  218  nest new email-login-backend -p npm
+  219  cd email-login-backend/
+  220  code .
+  221  npm run start:dev
+  222  nest g resource user
+  223  npm install --save @nestjs/typeorm typeorm mysql2
+  224  npm run start:dev
+  225  nest g resource email
+  226  npm install --save nodemailer
+  227  npm install --save-dev @types/nodemailer
+  228  npm run start:dev
+  229  npm run start:dev
+  230  npm install --save @nestjs/config
+  231  npm run start:dev
+  232  npm run start:dev
+  233  npm run start:dev
+  234  npm run start:dev
+  235  npm run start:dev
+  236  npm install --save @nestjs/config
+  237  npm run start:dev
+  238  npm run start:dev
+  239  npm run start:dev
+  240  nest g resource redis  --no-spec
+  241  npm install redis --save
+  242  npm run start:dev
+  243  npm install --save class-validator class-transformer
+  244  npm run start:dev
+  245  cd ..
+  246  nest new article-views -p npm
+  247  cd article-views/
+  248  npm install --save @nestjs/typeorm typeorm mysql2
+  249  code .
+  250  nest g resource user --no-spec
+  251  nest g resource article --no-spec
+  252  npm run start:dev
+  253  npm install express-session @types/express-session
+  254  npm run start:dev
+  255  npm run start:dev
+  256  npm install --save redis
+  257  nest g module redis
+  258  nest g service redis
+  259  nest g module redis
+  260  npm run start:dev
+  261  npm install --save @nestjs/schedule
+  262  npm run start:dev
+  263  nest g module task
+  264  nest g service task
+  265  npm run start:dev
+  266  cd ..
+  267  nest new schedule-task
+  268  cd schedule-task/
+  269  npm install --save @nestjs/schedule
+  270  code .
+  271  nest g service task --flat --no-spec
+  272  npm run start:dev
+  273  nest g resource aaa
+  274  npm run start:dev
+  275  npm run start:dev
+  276  cd ..
+  277  nest new sse-test
+  278  cd sse-test
+  279  code .
+  280  npm run start:dev
+  281  cd ..
+  282  nest new gif-compression-backend
+  283  npx create-react-app gif-compression-frontend
+  284  code .
+  285  npm run start:dev
+  286  npm install -D @types/multer
+  287  npm run start:dev
+  288  npm install --save sharp
+  289  npm install --save sharp
+  290  npm install --save sharp
+  291  npm cache clean
+  292  npm i dayjs
+  293  npm install --save sharp
+  294  npm config set sharp_binary_host "https://npmmirror.com/mirrors/sharp"
+  295  npm config set sharp_libvips_binary_host "https://npmmirror.com/mirrors/sharp-libvips"
+  296  npm config set sharp_libvips_binary_host https://npmmirror.com/mirrors/sharp-libvips
+  297  npm config set sharp_binary_host "https://npmmirror.com/mirrors/sharp"
+  298  npm config set sharp_libvips_binary_host "https://npmmirror.com/mirrors/sharp-libvips"
+  299  npm install --save antd
+  300  code .
+  301  npm run start
+  302  cd ..
+  303  nest new qrcode-login
+  304  cd qrcode-login/
+  305  npm install qrcode @types/qrcode
+  306  code .
+  307  npm run start:dev
+  308  npm install @nestjs/jwt
+  309  npm run start:dev
+  310  npm run start:dev
+  311  nest new qrcode-login
+  312  code .
+  313  npm install qrcode @types/qrcode
+  314  npm run start:dev
+  315  npm install @nestjs/jwt
+  316  npm run start:dev
+  317  cd ..
+  318  nest new meeting_room_booking_system_backend
+  319  cd meeting_room_booking_system_backend/
+  320  npm install --save @nestjs/typeorm typeorm mysql2
+  321  code .
+  322  npm run start:dev
+  323  nest g resource user
+  324  npm run start:dev
+  325  npm install --save class-validator class-transformer
+  326  npm run start:dev
+  327  nest g module redis
+  328  nest g service redis
+  329  npm install --save redis
+  330  npm run start:dev
+  331  nest g resource email
+  332  npm run start:dev
+  333  npm install nodemailer --save
+  334  npm run start:dev
+  335  npm run start:dev
+  336  npm run start:dev
+  337  npm install --save @nestjs/config
+  338  npm run start:dev
+  339  npm run start:dev
+  340  npm run start:dev
+  341  npm run start:dev
+  342  npm run start:dev
+  343  npm run start:dev
+  344  npm run start:dev
+  345  npm run start:dev
+  346  npm install --save @nestjs/jwt
+  347  npm run start:dev
+  348  nest g guard login --flat --no-spec
+  349  nest g guard permission --flat --no-spec
+  350  nest g guard login --flat --no-spec
+  351  npm run start:dev
+  352  nest g interceptor format-response --flat
+  353  npm run start:dev
+  354  nest g interceptor invoke-record --flat
+  355  npm run start:dev
+  356  npm run start:dev
+  357  nest g filter unlogin --flat
+  358  nest g filter custom-exception --flat
+  359  npm run start:dev
+  360  npx create-react-app --template=typescript meeting_room_booking_system_frontend_u
+  361  ser
+  362  cd meeting_room_booking_system_frontend_u/
+  363  code .
+  364  npm run start
+  365  npm install --save react-router-dom
+  366  npm run start
+  367  npm install antd --save
+  368  npm run start
+  369  npm install --save axios
+  370  npm run start
+  371  npm install @ant-design/icons --save
+  372  npm run start
+  373  npx create-react-app --template=typescript meeting_room_booking_system_frontend_admin
+  374  cd meeting_room_booking_system_frontend_admin/
+  375  code .
+  376  npm run start
+  377  npm install --save react-router-dom
+  378  npm run start
+  379  npm install antd --save
+  380  npm install antd --save
+  381  npm run start
+  382  npm install axios
+  383  npm run start
+  384  npm install @ant-design/icons --save
+  385  npm run start
+  386  code .
+  387  npm install --save @nestjs/swagger
+  388  npm run start:dev
+  389  npm run start:dev
+  390  npm install @types/multer
+  391  npm run start:dev
+  392  npm run start
+  393  npm run start:dev
+  394  code .
+  395  npm run start
+  396  nest g resource meeting-room
+  397  npm run start:dev
+  398  npm run micro-start
+  399  npm run micro-start
+  400  npm run micro-start
+  401  npm run micro-start
+  402  nodemon micro-server.js 
+  403  npm i
+  404  nodemon micro-server.js 
+  405  nodemon app.js 
+  406  nodemon app.js
+  407  nodemon app.js
+  408  npm i
+  409  npm i
+  410  npm run start
+  411  npm run start
+  412  npm i
+  413  npm run start
+  414  npm i
+  415  npm i
+  416  npm run start
+  417  npm i
+  418  npm run start
+  419  npm i
+  420  git clone https://github.com/ziyi2/micro-framework.git
+  421  cd micro-framework/
+  422  git branch -r
+  423  git chechout -b iframe-isolate  origin/demo/iframe-isolate
+  424  git checkout -b iframe-isolate  origin/demo/iframe-isolate
+  425  git pull
+  426  code .
+  427  npm run main-start
+  428  npm i
+  429  npm run main-start
+  430  npm run main-start
+  431  npm run main-start
+  432  npm run main-start
+  433  nodemon main-server.js 
+  434  git checkout -b demo/npm-esmodule origin/demo/npm-esmodule
+  435  git pull
+  436  nodemon app.js 
+  437  npm i
+  438  nodemon app.js 
+  439  git checkout -b demo/npm-micro origin/demo/npm-micro
+  440  git pull
+  441  npm init -y
+  442  code .
+  443  npm i react express
+  444  npm i react-dom/server
+  445  npm install react react-dom
+  446  nodemon index.js 
+  447  nodemon index.js 
+  448  git pull
+  449  git clone https://github.com/vuejs/vuex.git
+  450  node 4.
+  451  node 4.js
+  452  node -v
+  453  nvm list
+  454  npm run start:dev
+  455  npm init -y
+  456  npm install immutable
+  457  node index.js 
+  458  node index.js 
+  459  npm install immer
+  460  npm i --save immer
+  461  node index.js 
+  462  node index.js 
+  463  node index.js 
+  464  node index.js 
+  465  node index.js 
+  466  node index.js 
+  467  node index.js 
+  468  echo $0
+  469  git clone https://github.com/FrankFang/oh-my-env-1
+  470  docker run -d      --name db-for-mangosteen      -e POSTGRES_USER=mangosteen      -e POSTGRES_PASSWORD=123456      -e POSTGRES_DB=mangosteen_dev      -e PGDATA=/var/lib/postgresql/data/pgdata      -v mangosteen-data:/var/lib/postgresql/data      --network=network1      postgres:14
+  471  node -v
+  472  npm get registry
+  473  npm install -g pnpm
+  474  pnpm --version
+  475  cd ..
+  476  rm -rf mangosteen_front
+  477  rm -rf mangosteen_front
+  478  npm -v
+  479  npm create vite@latest mangosteen_front -- --template vue-ts
+  480  cd mangosteen_front/
+  481  npm i
+  482  rm -rf node_modules/
+  483  pnpm config get registry
+  484  pnpm i
+  485  pnpm run dev
+  486  code .
+  487  pnpm run dev
+  488  pnpm run build
+  489  pnpm i http-server
+  490  pnpm i http-server -g
+  491  pnpm i -g http-server
+  492  pnpm setup
+  493  pnpm config set store-dir "D:\software\pnpm\storeDir"
+  494  pnpm config set global-dir "D:\software\pnpm\globalDir"
+  495  pnpm config set global-bin-dir "D:\software\pnpm\globalBinDir"
+  496  pnpm config set state-dir "D:\software\pnpm\state"
+  497  pnpm config set cache-dir "D:\software\pnpm\cache"
+  498  pnpm i -g http-server
+  499  pnpm i -g http-server
+  500  pnpm i -g http-server
+  501  pnpm run preview
+  502  pnpm run build
+  503  pnpm run build
+  504  pnpm run preview
+  505  git init
+  506  git add .
+  507  git commit -m  'init'
+  508  git branch -M main
+  509  git branch
+  510  git remote add origin git@github.com:doria76593/mangosteen_front.git
+  511  git push -u origin main
+  512  pnpm run build
+  513  git rm -r --cache dist
+  514  pnpm run dev
+  515  pnpm run dev
+  516  pnpm run dev
+  517* pm install @vue/babel-plugin-jsx
+  518  pnpm i @vitejs/plugin-vue-jsx -D
+  519  pnpm i @vitejs/plugin-vue-jsx -D
+  520  rm -rf node_modules/
+  521  pnpm i
+  522  pnpm i @vitejs/plugin-vue-jsx -D
+  523  pnpm run dev
+  524  pnpm run dev
+  525  pnpm install vue-router@4 -S
+  526  code ~/.bashrc
+  527  pnpm run dev
+  528  history
+  529  history >> 1.txx
