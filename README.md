@@ -207,6 +207,25 @@ export const Button = defineComponent<Props>({
 
 
 
+```typescript
+Propsexport const FloatButton = defineComponent({
+  // props【js,vue中运行】和 Props【ts】只能二选一,比如上面就是用的Props
+  props: {
+    iconName: {
+      type: String as PropType<IconName>,//PropType<IconName>,表示只能选择IconName中的一个
+      required: true,
+    },
+  },
+  setup: (props, context) => {
+    return () => (
+      <div class={s.floatButton}>
+        <Icon name={props.iconName} class={s.icon} />
+      </div>
+    );
+  },
+});
+```
+
 
 
 
