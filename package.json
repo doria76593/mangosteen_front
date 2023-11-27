@@ -9,6 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "svgo": "^3.0.4",
+    "svgstore": "^3.0.1",
     "vue": "^3.3.8",
     "vue-router": "4"
   },
