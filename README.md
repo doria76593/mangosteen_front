@@ -141,6 +141,10 @@ export const WelcomeLayout = defineComponent({
 });
 ```
 
+
+
+## router动画
+
 ```typescript
 //RouterView 插槽的tsx渲染 
 核心：
@@ -163,4 +167,6 @@ export const WelcomeLayout = defineComponent({
             }}
    </RouterView>
 ```
+
+
 
