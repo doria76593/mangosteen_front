@@ -94,6 +94,7 @@ export const First = defineComponent({
 ```
 
 ```typescript
+方式2：
 export const First = defineComponent({
   setup: (props, context) => {
     const aa = {
@@ -138,5 +139,28 @@ export const WelcomeLayout = defineComponent({
     );
   },
 });
+```
+
+```typescript
+//RouterView 插槽的tsx渲染 
+核心：
+ {(obj: any) => {
+              // console.log('obj', obj);
+     return obj.Component
+ }}
+ <RouterView name="main">
+    {({ Component: X, route: R }: { Component: VNode; route: RouteLocationNormalizedLoaded }) => {
+              return (
+                <Transition
+                  enterFromClass={s.slide_fade_enter_from}
+                  enterActiveClass={s.slide_fade_enter_active}
+                  leaveToClass={s.slide_fade_leave_to}
+                  leaveActiveClass={s.slide_fade_leave_active}
+                >
+                  {X}
+                </Transition>
+              );
+            }}
+   </RouterView>
 ```
 
