@@ -1,8 +1,8 @@
 github 部署的地址：https://doria76593.github.io/mangosteen_front/dist/index.html
 
-## 一些关键的步骤
+### 一些关键的步骤
 
-## init 配置
+### init 配置
 
 init 项目
 
@@ -61,7 +61,7 @@ flex-shrink: 0; 不伸缩，默认为1
 flex-grow:1;占的比例 默认为0。当其他为0或者没有设置的时候，设置为1就会占父级元素的100%。
 ```
 
-## 插槽的一些用法
+### 插槽的一些用法
 
 1-定义插槽
 
@@ -143,7 +143,7 @@ export const WelcomeLayout = defineComponent({
 
 
 
-## router动画
+### router动画
 
 ```typescript
 //RouterView 插槽的tsx渲染 
@@ -167,6 +167,49 @@ export const WelcomeLayout = defineComponent({
             }}
    </RouterView>
 ```
+
+
+
+
+
+
+
+- 自定义插件：svg插件
+
+- 滑动切换路由
+
+### 自定义组件
+
+```typescript
+//定义button组件
+import { defineComponent } from 'vue';
+import s from './Button.module.scss';
+
+interface Props { //对于要接受的参数，需要props接收，所以这里要声明
+  onClick: (e: MouseEvent) => void;
+}
+
+export const Button = defineComponent<Props>({
+  setup: (props, context) => {
+    return () => <button class={s.button}>{context.slots.default?.()}</button>;
+  },
+});
+```
+
+
+
+```typescript
+2-使用button组件，vue3可以在这里直接设置class和事件。然后在button那里，class直接应用了；事件声明了就可以了。 
+<Button class={s.button} onClick={onClick}>
+            测试
+          </Button>
+```
+
+
+
+
+
+
 
 
 
