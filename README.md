@@ -242,3 +242,10 @@ props: {
 
 
 
+### 杂记-css
+
+```css
+fill:red
+在svg的父级元素设置fill,子孙的svg元素也是生效的。
+```
+
