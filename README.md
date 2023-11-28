@@ -199,7 +199,7 @@ export const Button = defineComponent<Props>({
 
 
 ```typescript
-2-使用button组件，vue3可以在这里直接设置class和事件。然后在button那里，class直接应用了；事件声明了就可以了。 
+2-使用button组件，vue3可以在【使用的组件上】直接设置【class】和【事件】。然后在Button组件内部的根组件button那里，【class】和【事件】直接应用在了【button]上。 
 <Button class={s.button} onClick={onClick}>
             测试
           </Button>
@@ -228,7 +228,17 @@ Propsexport const FloatButton = defineComponent({
 
 
 
+### 一些typescript
 
+```typescript
+PropType： 
+props: {
+    direction: {
+      type: String as PropType<'-' | '|' | 'horizontal' | 'vertical'>,表示type是PropType括号中的一种
+      default: 'horizontal',
+    },
+  },
+```
 
 
 
