@@ -270,7 +270,48 @@ export const Icon = defineComponent({
 
 ### 双向数据绑定
 
-#### v-model
+#### 1-默认的v-model
+
+```typescript
+<EmojiSelect v-model={formData.sign} class={[s.formItem, s.emojiList, s.error]} />
+```
+
+```typescript
+默认的v-model是modelValue属性
+export const EmojiSelect = defineComponent({
+  props: {
+    modelValue: {//1-接受参数
+      type: String,
+    },
+  },
+  setup: (props, context) => {
+    const onClickEmoji = (emoji: string) => {
+      context.emit('update:modelValue', emoji);//2-emit update:modelValue
+    };
+    const emojis = computed(() => {
+      return selectedItem.map((category) =>
+        emojiList
+          .find((item) => item[0] === category)?.[1]
+          .map((item) => (
+            <li class={item === props.modelValue ? s.selectedEmoji : ''} 
+               onClick={() => onClickEmoji(item)}>
+              {item}
+            </li>
+          ))
+      );
+    });
+    return () => (
+      <div class={s.emojiList}>
+        <ol>{emojis.value}</ol>
+      </div>
+    );
+  },
+});
+```
+
+
+
+#### 2- 带属性的 v-model
 
 ```typescript
  <Tabs v-model:selected={refKind.value}>//1-v-model:selected
@@ -305,7 +346,7 @@ export const Tabs = defineComponent({
 });
 ```
 
-#### 属性传值的方式
+#### 3-属性传值的方式
 
 ```typescript
   <Tabs selected={refKind.value}  onUpdateSelected={(name) => { refKind.value = name;}} >1-使用的时候 需要传递属性和事件【selected、onUpdateSelected】
