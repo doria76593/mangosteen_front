@@ -422,3 +422,6 @@ fill:red
   }
 ```
 
+编辑器排序
+
+vscode: ctrl+shift+p :sort 排序
