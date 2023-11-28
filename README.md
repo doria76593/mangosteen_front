@@ -202,6 +202,12 @@ props: {
      onClick: {
       type: Function as PropType<(e: MouseEvent) => void>,
     },
+    name: {
+      type: String as PropType<string>,
+    },
+    onUpdateSelected: {
+      type: Function as PropType<(name: string) => void>,
+    },
   },
 ```
 
@@ -262,9 +268,92 @@ export const Icon = defineComponent({
 
 
 
+### 双向数据绑定
 
+#### v-model
 
+```typescript
+ <Tabs v-model:selected={refKind.value}>//1-v-model:selected
+                <Tab name="收入">1111</Tab>
+                <Tab name="支出">2222</Tab>
+              </Tabs>
+```
 
+```typescript
+export const Tabs = defineComponent({
+  props: {
+    selected: {//2-默认就会接受v-model后面的参数为传进进来的参数
+      type: String as PropType<string>,
+      required: false,
+    },
+  },
+  setup: (props, context) => {
+    const array = context.slots.default?.();
+
+    return () => (
+      <div class={s.tabs}>
+        <ol class={s.tabs_nav}>
+          {array.map((item) => (
+            <li class={item.props?.name === props.selected ? s.selected : ''} onClick={() => context.emit('update:selected', item.props?.name)}>//3-emit触发到外面的事件也是update:对应属性
+              {item.props?.name}
+            </li>
+          ))}
+        </ol>
+      </div>
+    );
+  },
+});
+```
+
+#### 属性传值的方式
+
+```typescript
+  <Tabs selected={refKind.value}  onUpdateSelected={(name) => { refKind.value = name;}} >1-使用的时候 需要传递属性和事件【selected、onUpdateSelected】
+                <Tab name="收入">1111</Tab>
+                <Tab name="支出">2222</Tab>
+              </Tabs>
+```
+
+```typescript
+export const Tabs = defineComponent({
+  props: {
+    selected: {2-需要接受属性
+      type: String as PropType<string>,
+      required: false,
+    },
+    onUpdateSelected: {3-需要接受事件
+      type: Function as PropType<(name: string) => void>,
+    },
+  },
+  setup: (props, context) => {
+    const array = context.slots.default?.();
+    return () => (
+      <div class={s.tabs}>
+        <ol class={s.tabs_nav}>
+          {array.map((item) => (
+            <li class={item.props?.name === props.selected ? s.selected : ''} 
+       onClick={() => props.onUpdateSelected?.(item.props?.name)}> //4-调用属性
+              {item.props?.name}
+            </li>
+          ))}
+        </ol>
+      </div>
+    );
+  },
+});
+
+export const Tab = defineComponent({
+  props: {
+    name: {
+      type: String as PropType<string>,
+    },
+  },
+  setup: (props, context) => {
+    // console.log(context);
+    return () => <div>{context.slots.default?.()}</div>;
+  },
+});
+```
 
 
 
