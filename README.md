@@ -178,14 +178,41 @@ export const WelcomeLayout = defineComponent({
 
 - 滑动切换路由
 
-### 自定义组件
+### 自定义组件（class、props、事件、）
+
+#### class:在使用的组件那里绑定的class
+
+在使用的组件那里绑定的class,会直接映射到根元素上
+
+```typescript
+<Button class={s.button}>测试</Button> 会直接映射到Button内部组件的根元素上
+```
+
+
+
+#### props中的typescript
+
+```typescript
+as PropType： 理解为PropType尖括号内 的ts类型 回去约束String,最终为type的类型
+props: {
+    direction: {
+      type: String as PropType<'-' | '|' | 'horizontal' | 'vertical'>,表示type是PropType括号中的一种
+      default: 'horizontal',
+    },
+     onClick: {
+      type: Function as PropType<(e: MouseEvent) => void>,
+    },
+  },
+```
+
+#### props接收参数
 
 ```typescript
 //定义button组件
 import { defineComponent } from 'vue';
 import s from './Button.module.scss';
 
-interface Props { //对于要接受的参数，需要props接收，所以这里要声明
+interface Props { //对于要接受的参数，需要props接收，1-要么通过Props【ts】接受，2要么通过props【js,vue中运行】接受（同上），只能二选一
   onClick: (e: MouseEvent) => void;
 }
 
@@ -196,31 +223,38 @@ export const Button = defineComponent<Props>({
 });
 ```
 
-
+#### props接收参数-事件1
 
 ```typescript
-2-使用button组件，vue3可以在【使用的组件上】直接设置【class】和【事件】。然后在Button组件内部的根组件button那里，【class】和【事件】直接应用在了【button]上。 
-<Button class={s.button} onClick={onClick}>
-            测试
-          </Button>
+2-使用Button组件，vue3在【使用的组件上】设置了【事件】。然后在Button组件内部的根组件button那里，【事件】会被自动绑定在根元素【button]上。 
+<Button class={s.button} onClick={onClick}>测试</Button>
 ```
 
 
 
+#### props接收参数-事件2
+
+如果props声明了onclick，就必须在内部元素上自己绑定，vue在这时候不会帮忙绑定
+
 ```typescript
-Propsexport const FloatButton = defineComponent({
-  // props【js,vue中运行】和 Props【ts】只能二选一,比如上面就是用的Props
+<Icon name="menu" class={s.navIcon} onClick={onClickMenu} />,
+```
+
+```typescript
+export const Icon = defineComponent({
   props: {
-    iconName: {
-      type: String as PropType<IconName>,//PropType<IconName>,表示只能选择IconName中的一个
-      required: true,
+    name: {
+      type: String as PropType<IconName>,
+    },
+    onClick: {
+      type: Function as PropType<(e: MouseEvent) => void>,
     },
   },
   setup: (props, context) => {
     return () => (
-      <div class={s.floatButton}>
-        <Icon name={props.iconName} class={s.icon} />
-      </div>
+      <svg class={s.icon} onClick={props.onClick}>
+        <use xlinkHref={'#' + props.name}></use>
+      </svg>
     );
   },
 });
@@ -228,17 +262,9 @@ Propsexport const FloatButton = defineComponent({
 
 
 
-### 一些typescript
 
-```typescript
-PropType： 
-props: {
-    direction: {
-      type: String as PropType<'-' | '|' | 'horizontal' | 'vertical'>,表示type是PropType括号中的一种
-      default: 'horizontal',
-    },
-  },
-```
+
+
 
 
 
