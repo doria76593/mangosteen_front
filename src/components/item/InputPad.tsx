@@ -2,6 +2,7 @@ import { defineComponent, PropType, ref } from 'vue';
 import { Icon } from '../../shared/Icon';
 import s from './InputPad.module.scss';
 import { time } from '../../shared/time';
+import { Calendar } from 'vant';
 export const InputPad = defineComponent({
   props: {
     name: {
@@ -9,8 +10,13 @@ export const InputPad = defineComponent({
     },
   },
   setup: (props, context) => {
-    const refDate = ref<Date>();
     const now = new Date();
+    const refDate = ref<Date>(now);
+    const refDatePickerVisible = ref(false);
+    const onConfirm = (value: any) => {
+      refDatePickerVisible.value = false;
+      refDate.value = new Date(value);
+    };
     const buttons = [
       { text: '1', onClick: () => {} },
       { text: '2', onClick: () => {} },
@@ -31,15 +37,19 @@ export const InputPad = defineComponent({
     ];
     return () => (
       <>
+        <h2>refShowPop: {refDatePickerVisible.value}</h2>
+
         <div class={s.dateAndAmount}>
           <span class={s.date}>
             <Icon name="date" class={s.icon} />
             <span>
-              <input type="date" value={time(now).format()} />
+              <span onClick={() => (refDatePickerVisible.value = true)}>{time(refDate.value).format()}</span>
+              <Calendar v-model:show={refDatePickerVisible.value} onConfirm={onConfirm} />
             </span>
           </span>
           <span class={s.amount}>199.12</span>
         </div>
+
         <div class={s.buttons}>
           {buttons.map((button) => (
             <button onClick={button.onClick}>{button.text}</button>
