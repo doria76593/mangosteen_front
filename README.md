@@ -364,3 +364,61 @@ fill:red
 在svg的父级元素设置fill,子孙的svg元素也是生效的。
 ```
 
+```css
+  display: grid;//1-设置grid布局
+  grid-template-areas://2-设置grid分区，分区不能以数字开头
+    'n1 n2 n3 d'
+    'n4 n5 n6 d'
+    'n7 n8 n9 s'
+    'n0 n0 nd s';
+  grid-auto-rows: 48px;//设置每个高度
+  grid-auto-columns: 1fr;//设置等分
+  gap: 1px;//gap设置行和行、列与列的空隙
+3-设置每个元素的位置，和2的分区对应
+> button {
+    border: none;
+    background: var(--button-bg);
+    &:nth-child(1) {
+      grid-area: n1;
+    }
+    &:nth-child(2) {
+      grid-area: n2;
+    }
+    &:nth-child(3) {
+      grid-area: n3;
+    }
+    &:nth-child(4) {
+      grid-area: n4;
+    }
+    &:nth-child(5) {
+      grid-area: n5;
+    }
+    &:nth-child(6) {
+      grid-area: n6;
+    }
+    &:nth-child(7) {
+      grid-area: n7;
+    }
+    &:nth-child(8) {
+      grid-area: n8;
+    }
+    &:nth-child(9) {
+      grid-area: n9;
+    }
+    &:nth-child(10) {
+      grid-area: nd;
+    }
+    &:nth-child(11) {
+      grid-area: n0;
+    }
+    &:nth-child(12) {
+      grid-area: d;
+    }
+    &:nth-child(13) {
+      grid-area: s;
+      background: var(--button-bg-important);
+      color: var(--button-text-important);
+    }
+  }
+```
+
