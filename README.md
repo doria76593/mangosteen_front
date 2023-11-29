@@ -398,6 +398,32 @@ export const Tab = defineComponent({
 
 
 
+### typescript-杂
+
+```typescript
+interface FData {
+  //1.interface可以循环引用自己，type不可以
+  [k: string]: string | number | null | undefined | FData;
+}
+
+type Rule<T> = {
+  key: keyof T;
+  message: string;
+} & ({ type: 'required' } | { type: 'pattern'; regex: RegExp });
+// 2.【| 或运算符】必须有一个属性是互斥的，才有效,比如这里的type
+
+// 3.箭头函数加泛型 必须结合extends
+export const validate = <T extends FData>(formData: T, rules: Rules<T>) => {
+    ...
+}
+ 4-如果某个类型没有对象没有写类型，ts会自动推到类型，后面可能会和实际想要的类型冲突。
+    
+```
+
+
+
+
+
 ### 杂记-css
 
 ```css
