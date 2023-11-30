@@ -492,3 +492,8 @@ fill:red
 编辑器排序
 
 vscode: ctrl+shift+p :sort 排序
+
+### 一些外链
+
+[Vue3中watch和watchEffe]: https://zhuanlan.zhihu.com/p/528715632
+
