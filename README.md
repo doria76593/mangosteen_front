@@ -328,6 +328,7 @@ export const Tabs = defineComponent({
       required: false,
     },
   },
+   emits: ['update:selected'],3-所有emit的事件，必须先在这里声明
   setup: (props, context) => {
     const array = context.slots.default?.();
 
@@ -335,7 +336,7 @@ export const Tabs = defineComponent({
       <div class={s.tabs}>
         <ol class={s.tabs_nav}>
           {array.map((item) => (
-            <li class={item.props?.name === props.selected ? s.selected : ''} onClick={() => context.emit('update:selected', item.props?.name)}>//3-emit触发到外面的事件也是update:对应属性
+            <li class={item.props?.name === props.selected ? s.selected : ''} onClick={() => context.emit('update:selected', item.props?.name)}>//4-emit触发到外面的事件也是update:对应属性
               {item.props?.name}
             </li>
           ))}
@@ -346,52 +347,39 @@ export const Tabs = defineComponent({
 });
 ```
 
-#### 3-属性传值的方式
+#### 3-属性传值的方式（和2是一样的效果，只是使用的时候不一样）
 
 ```typescript
-  <Tabs selected={refKind.value}  onUpdateSelected={(name) => { refKind.value = name;}} >1-使用的时候 需要传递属性和事件【selected、onUpdateSelected】
+  <Tabs selected={refSelected.value} onUpdate:selected={(name) => {refSelected.value = name;}} >1-使用的时候 需要传递属性和事件【onUpdate:绑定的属性】
                 <Tab name="收入">1111</Tab>
                 <Tab name="支出">2222</Tab>
               </Tabs>
 ```
 
 ```typescript
+和2是一样的
 export const Tabs = defineComponent({
   props: {
-    selected: {2-需要接受属性
+    selected: {//2-默认就会接受v-model后面的参数为传进进来的参数
       type: String as PropType<string>,
       required: false,
     },
-    onUpdateSelected: {3-需要接受事件
-      type: Function as PropType<(name: string) => void>,
-    },
   },
+   emits: ['update:selected'],3-所有emit的事件，必须先在这里声明
   setup: (props, context) => {
     const array = context.slots.default?.();
+
     return () => (
       <div class={s.tabs}>
         <ol class={s.tabs_nav}>
           {array.map((item) => (
-            <li class={item.props?.name === props.selected ? s.selected : ''} 
-       onClick={() => props.onUpdateSelected?.(item.props?.name)}> //4-调用属性
+            <li class={item.props?.name === props.selected ? s.selected : ''} onClick={() => context.emit('update:selected', item.props?.name)}>//4-emit触发到外面的事件也是update:对应属性
               {item.props?.name}
             </li>
           ))}
         </ol>
       </div>
     );
-  },
-});
-
-export const Tab = defineComponent({
-  props: {
-    name: {
-      type: String as PropType<string>,
-    },
-  },
-  setup: (props, context) => {
-    // console.log(context);
-    return () => <div>{context.slots.default?.()}</div>;
   },
 });
 ```
