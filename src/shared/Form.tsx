@@ -3,6 +3,7 @@ import { EmojiSelect } from './EmojiSelect';
 import s from './Form.module.scss';
 import { Popup, DatePicker } from 'vant';
 import { Time } from './time';
+import { Button } from './Button';
 export const Form = defineComponent({
   props: {
     onSubmit: {
@@ -27,11 +28,12 @@ export const FormItem = defineComponent({
       type: [String, Number],
     },
     type: {
-      type: String as PropType<'text' | 'emojiSelect' | 'date'>,
+      type: String as PropType<'text' | 'emojiSelect' | 'date' | 'validationCode'>,
     },
     error: {
       type: String,
     },
+    placeholder: String,
   },
   emits: ['update:modelValue'],
   setup: (props, context) => {
@@ -39,7 +41,14 @@ export const FormItem = defineComponent({
     const content = computed(() => {
       switch (props.type) {
         case 'text':
-          return <input value={props.modelValue} onInput={(e: any) => context.emit('update:modelValue', e.target.value)} class={[s.formItem, s.input]} />;
+          return (
+            <input
+              value={props.modelValue}
+              placeholder={props.placeholder}
+              onInput={(e: any) => context.emit('update:modelValue', e.target.value)}
+              class={[s.formItem, s.input]}
+            />
+          );
         case 'emojiSelect':
           return (
             <EmojiSelect
@@ -48,11 +57,19 @@ export const FormItem = defineComponent({
               class={[s.formItem, s.emojiList, s.error]}
             />
           );
+        case 'validationCode':
+          return (
+            <>
+              <input class={[s.formItem, s.input, s.validationCodeInput]} placeholder={props.placeholder} />
+              <Button class={[s.formItem, s.button, s.validationCodeButton]}>发送验证码</Button>
+            </>
+          );
         case 'date':
           return (
             <>
               <input
                 readonly={true}
+                placeholder={props.placeholder}
                 value={props.modelValue}
                 onClick={() => {
                   refDateVisible.value = true;
@@ -85,7 +102,7 @@ export const FormItem = defineComponent({
             <div class={s.formItem_value}>{content.value}</div>
             {props.error && (
               <div class={s.formItem_errorHint}>
-                <span>{props.error}</span>
+                <span>{props.error ?? '　'}</span>
               </div>
             )}
           </label>
