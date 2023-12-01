@@ -452,6 +452,19 @@ export const validate = <T extends FData>(formData: T, rules: Rules<T>) => {
 
 
 
+```typescript
+ 
+// Omit<AxiosRequestConfig, 'params' | 'url' | 'method'> 表示config类型是AxiosRequestConfig，但是要除去'params' | 'url' | 'method'
+  // <R = unknown> 表示想传递泛型，= unknown表示给了一个默认值，所以表示可以不传递泛型
+  get<R = unknown>(url: string, query?: Record<string, string>, config?: Omit<AxiosRequestConfig, 'params' | 'url' | 'method'>) {
+    return this.instance.request<R>({ ...config, url: url, params: query, method: 'get' });
+  }
+```
+
+
+
+
+
 
 
 ### 杂记-css
