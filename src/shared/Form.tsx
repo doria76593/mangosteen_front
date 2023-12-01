@@ -4,6 +4,7 @@ import s from './Form.module.scss';
 import { Popup, DatePicker } from 'vant';
 import { Time } from './time';
 import { Button } from './Button';
+import { getFriendlyError } from './getFrendlyError';
 export const Form = defineComponent({
   props: {
     onSubmit: {
@@ -142,7 +143,7 @@ export const FormItem = defineComponent({
             <div class={s.formItem_value}>{content.value}</div>
             {props.error && (
               <div class={s.formItem_errorHint}>
-                <span>{props.error ?? '　'}</span>
+                <span>{props.error ? getFriendlyError(props.error) : '　'}</span>
               </div>
             )}
           </label>

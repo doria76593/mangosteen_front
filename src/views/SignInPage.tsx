@@ -6,6 +6,7 @@ import { Icon } from '../shared/Icon';
 import { validate } from '../shared/validate';
 import axios from 'axios';
 import s from './SignInPage.module.scss';
+import { http } from '../shared/Http';
 export const SignInPage = defineComponent({
   setup: (props, context) => {
     const formData = reactive({
@@ -32,16 +33,17 @@ export const SignInPage = defineComponent({
       );
     };
     const refValidationCode = ref<any>();
+    const onError = (error: any) => {
+      if (error.response.status === 422) {
+        Object.assign(errors, error.response.data.errors);
+      }
+      throw error;
+    };
 
     const onClickSendValidationCode = async () => {
-      const res = await axios
-        .post('/api/v1/validation_codes', {
-          email: formData.email,
-        })
-        .catch((err) => {
-          console.log(err.message);
-        });
-      console.log(res);
+      const response = await http.post('/validation_codes', { email: formData.email }).catch(onError);
+
+      console.log(response);
       refValidationCode.value.startCount(); //验证码发送成功后才进入倒计时
     };
     return () => (
