@@ -515,3 +515,9 @@ body里面就是uid
 
 - atob() //ASCII to Base64
 - btoa() //Base64 to ASCII
+
+
+
+### html-杂
+
+form表单下的按钮在没有指定type类型的时候，button会有一个默认的type=”[submit]"

@@ -4,6 +4,7 @@ import { Button } from '../shared/Button';
 import { Form, FormItem } from '../shared/Form';
 import { Icon } from '../shared/Icon';
 import { validate } from '../shared/validate';
+import axios from 'axios';
 import s from './SignInPage.module.scss';
 export const SignInPage = defineComponent({
   setup: (props, context) => {
@@ -30,8 +31,12 @@ export const SignInPage = defineComponent({
         ])
       );
     };
-    const onClickSendValidationCode = () => {
+    const onClickSendValidationCode = async () => {
       console.log('11111');
+      const res = await axios.post('/api/v1/validation_codes', {
+        email: formData.email,
+      });
+      console.log(res);
     };
     return () => (
       <MainLayout>
@@ -55,7 +60,8 @@ export const SignInPage = defineComponent({
                   error={errors.code?.[0]}
                 />
                 <FormItem style={{ paddingTop: '96px' }}>
-                  <Button>登录</Button>
+                  <Button>登录1</Button>
+                  <Button>登录2</Button>
                 </FormItem>
               </Form>
             </div>

@@ -9,7 +9,12 @@ export default defineConfig({
   // base: "/mangosteen_front/dist/",
   server: {
     host: '0.0.0.0',
-    port: 3000
+    port: 3000,
+    proxy: {
+      "/api/v1": {
+        target: "http://121.196.236.94:8080/"
+      }
+    }
   },
   plugins: [
     vue(),
