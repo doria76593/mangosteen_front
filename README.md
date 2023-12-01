@@ -384,6 +384,48 @@ export const Tabs = defineComponent({
 });
 ```
 
+### 父组件调用子组件的方法
+
+```typescript
+子组件
+export const FormItem = defineComponent({
+ setup: (props, context) => {
+    const startCount = () => {
+  ...
+    };
+    context.expose({ startCount });//定义方法并且暴露方法
+```
+
+```typescript
+父组件
+export const SignInPage = defineComponent({
+    const refValidationCode = ref<any>();
+    const onClickSendValidationCode = async () => {
+      refValidationCode.value.startCount(); //验证码发送成功后才进入倒计时
+    };
+    return () => (
+      <MainLayout>
+        {{
+       
+          default: () => (
+            <div class={s.wrapper}>
+              <Form>
+                <FormItem label="邮箱地址" />
+                <FormItem
+                  ref={refValidationCode}
+                  label="验证码"
+                />
+            </div>
+          ),
+        }}
+      </MainLayout>
+    );
+  },
+});
+```
+
+
+
 
 
 ### typescript-杂
