@@ -309,6 +309,18 @@ export const EmojiSelect = defineComponent({
 });
 ```
 
+#### input的v-model
+
+```typescript
+ value+onInput
+<input
+                class={[s.formItem, s.input, s.validationCodeInput]}
+                value={props.modelValue}
+                onInput={(e: any) => context.emit('update:modelValue', e.target.value)}
+                placeholder={props.placeholder}
+              />
+```
+
 
 
 #### 2- 带属性的 v-model
