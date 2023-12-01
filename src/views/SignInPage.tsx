@@ -53,6 +53,7 @@ export const SignInPage = defineComponent({
                 <FormItem label="邮箱地址" type="text" placeholder="请输入邮箱，然后点击发送验证码" v-model={formData.email} error={errors.email?.[0]} />
                 <FormItem
                   label="验证码"
+                  countFrom={60}
                   type="validationCode"
                   onClick={onClickSendValidationCode}
                   placeholder="请输入六位数字"
@@ -60,8 +61,7 @@ export const SignInPage = defineComponent({
                   error={errors.code?.[0]}
                 />
                 <FormItem style={{ paddingTop: '96px' }}>
-                  <Button>登录1</Button>
-                  <Button>登录2</Button>
+                  <Button>登录</Button>
                 </FormItem>
               </Form>
             </div>
