@@ -1,4 +1,5 @@
 import { defineComponent, PropType, reactive, ref } from 'vue';
+import { history } from '../shared/history';
 import { MainLayout } from '../layouts/MainLayout';
 import { Button } from '../shared/Button';
 import { Form, FormItem } from '../shared/Form';
@@ -32,7 +33,9 @@ export const SignInPage = defineComponent({
         ])
       );
       if (!hasError(errors)) {
-        const response = await http.post('/session', formData);
+        const response = await http.post<{ jwt: string }>('/session', formData);
+        localStorage.setItem('jwt', response.data.jwt);
+        history.push('/');
       }
     };
     const refValidationCode = ref<any>();
