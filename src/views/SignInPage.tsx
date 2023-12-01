@@ -7,6 +7,7 @@ import { validate } from '../shared/validate';
 import axios from 'axios';
 import s from './SignInPage.module.scss';
 import { http } from '../shared/Http';
+import { useBool } from '../hooks/useBool';
 export const SignInPage = defineComponent({
   setup: (props, context) => {
     const formData = reactive({
@@ -33,6 +34,7 @@ export const SignInPage = defineComponent({
       );
     };
     const refValidationCode = ref<any>();
+    const { ref: refDisabled, toggle, on: disabled, off: enable } = useBool(false);
     const onError = (error: any) => {
       if (error.response.status === 422) {
         Object.assign(errors, error.response.data.errors);
@@ -41,7 +43,13 @@ export const SignInPage = defineComponent({
     };
 
     const onClickSendValidationCode = async () => {
-      const response = await http.post('/validation_codes', { email: formData.email }).catch(onError);
+      disabled();
+      const response = await http
+        .post('/validation_codes', { email: formData.email })
+        .catch(onError)
+        .finally(() => {
+          enable();
+        });
 
       console.log(response);
       refValidationCode.value.startCount(); //验证码发送成功后才进入倒计时
@@ -66,6 +74,7 @@ export const SignInPage = defineComponent({
                   type="validationCode"
                   onClick={onClickSendValidationCode}
                   placeholder="请输入六位数字"
+                  disabled={refDisabled.value}
                   v-model={formData.code}
                   error={errors.code?.[0]}
                 />
