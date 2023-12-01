@@ -4,7 +4,7 @@ import s from './Form.module.scss';
 import { Popup, DatePicker } from 'vant';
 import { Time } from './time';
 import { Button } from './Button';
-import { getFriendlyError } from './getFrendlyError';
+import { getFriendlyError } from './getFriendlyError';
 export const Form = defineComponent({
   props: {
     onSubmit: {
