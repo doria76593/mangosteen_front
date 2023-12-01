@@ -485,3 +485,33 @@ vscode: ctrl+shift+p :sort 排序
 
 [Vue3中watch和watchEffe]: https://zhuanlan.zhihu.com/p/528715632
 
+### cookie和session、token、jwt
+
+https://coolshell.cn/articles/5353.html
+
+因为http是无状态的，因此，为了保存状态，服务器会向客户端发送一个字符串来识别它是哪个客户端，比如uid=1,uid=2，会种植到cookie里面。下次客户端1来请求服务器的时候，会默认把cookie鞋带，通过uid=1确定这个是客户端1，通过uid=2确定这个是客户端2.
+
+但是这种字符串太简单了，很容易被识别和篡改。所以，为了安全，服务器就会把uid=1加密的字符串发送到客户端，但是服务器不直接用这个加密字符串，而是用这个字符串来解密得到session：uid=1.所以一般会有文件或者在数据库中保持{cookie:session},而把这些数据保存在服务器端，加大了服务器的负担。
+
+所以诞生了token，让这些数据都保存在客户端，从而减轻服务端的压力。
+
+- JWT
+
+  并且JWT不仅仅是针对HTTP,是针对web的，所以也实用于其他的协议，比如websocket,而cookie则只能HTTP协议。
+
+JWT=加密（uid）,jwd就是把uid加密给前端。
+
+JWT=header+payload+signature
+
+base64(header).base64(payload).base64(signature)
+
+signature=加密（私钥，base64 header,base64 body）
+
+body里面就是uid
+
+### js-杂
+
+1. 在 JavaScript 中，有两个函数被分别用来处理解码和编码 [base64](https://so.csdn.net/so/search?q=base64&spm=1001.2101.3001.7020) 字符串：
+
+- atob() //ASCII to Base64
+- btoa() //Base64 to ASCII
