@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@faker-js/faker": "7.3.0",
     "axios": "^1.6.2",
     "echarts": "^5.4.3",
     "svgo": "^3.0.4",
