@@ -24,17 +24,18 @@ export const ItemCreate = defineComponent({
         page: page + 1,
       });
     };
-    const { fetchTags, hasMore, tags } = useTags(fetch1);
-
-    onMounted(async () => {
-      const response = await http.get<{ resources: Tag[] }>('/tags', {
+    const { tags: expensesTags, hasMore, fetchTags } = useTags(fetch1);
+    const {
+      tags: incomeTags,
+      hasMore: hasMore2,
+      fetchTags: fetchTags2,
+    } = useTags((page: number) => {
+      return http.get<Resources<Tag>>('/tags', {
         kind: 'income',
         _mock: 'tagIndex',
+        page: page + 1,
       });
-      console.log(response);
-      refIncomeTags.value = response.data.resources;
     });
-    const refIncomeTags = ref<Tag[]>([]);
     return () => (
       <MainLayout class={s.layout}>
         {{
@@ -52,7 +53,7 @@ export const ItemCreate = defineComponent({
                         </div>
                         <div class={s.name}>新增</div>
                       </div>
-                      {tags.value.map((tag) => (
+                      {expensesTags.value.map((tag) => (
                         <div class={[s.tag, s.selected]}>
                           <div class={s.sign}>{tag.sign}</div>
                           <div class={s.name}>{tag.name}</div>
@@ -76,12 +77,21 @@ export const ItemCreate = defineComponent({
                       </div>
                       <div class={s.name}>新增</div>
                     </div>
-                    {refIncomeTags.value.map((tag) => (
+                    {incomeTags.value.map((tag) => (
                       <div class={[s.tag, s.selected]}>
                         <div class={s.sign}>{tag.sign}</div>
                         <div class={s.name}>{tag.name}</div>
                       </div>
                     ))}
+                    <div class={s.more}>
+                      {hasMore2.value ? (
+                        <Button class={s.loadMore} onClick={fetchTags2}>
+                          加载更多
+                        </Button>
+                      ) : (
+                        <span class={s.noMore}>没有更多</span>
+                      )}
+                    </div>
                   </Tab>
                 </Tabs>
                 <div class={s.inputPad_wrapper}>
