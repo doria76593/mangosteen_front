@@ -1,10 +1,11 @@
 import { defineComponent, onMounted, PropType, ref } from 'vue';
 import { MainLayout } from '../../layouts/MainLayout';
+import { Button } from '../../shared/Button';
+import { http } from '../../shared/Http';
 import { Icon } from '../../shared/Icon';
 import { Tabs, Tab } from '../../shared/Tabs';
 import { InputPad } from './InputPad';
 import s from './ItemCreate.module.scss';
-import { http } from '../../shared/Http';
 export const ItemCreate = defineComponent({
   props: {
     name: {
@@ -13,25 +14,43 @@ export const ItemCreate = defineComponent({
   },
   setup: (props, context) => {
     const refKind = ref('支出');
-    const refExpensesTags = ref<Tag[]>([]);
-    const refIncomeTags = ref<Tag[]>([]);
-
+    const refPage = ref(0);
+    const refHasMore = ref(false);
     onMounted(async () => {
-      const response = await http.get<{ resources: Tag[] }>('/tags', {
+      const response = await http.get<Resources<Tag>>('/tags', {
         kind: 'expenses',
         _mock: 'tagIndex',
       });
-      refExpensesTags.value = response.data.resources;
+      console.log(response);
+      const { resources, pager } = response.data;
+      refExpensesTags.value = resources;
+      refHasMore.value = (pager.page - 1) * pager.per_page + resources.length < pager.count;
+      refPage.value = pager.page;
+      console.log(refHasMore.value);
     });
-
+    const onLoadMore = async () => {
+      const response = await http.get<Resources<Tag>>('/tags', {
+        kind: 'expenses',
+        _mock: 'tagIndex',
+        page: refPage.value + 1,
+      });
+      console.log(response);
+      const { resources, pager } = response.data;
+      refExpensesTags.value = refExpensesTags.value.concat(resources);
+      refHasMore.value = (pager.page - 1) * pager.per_page + resources.length < pager.count;
+      refPage.value = pager.page;
+      console.log(refHasMore.value);
+    };
+    const refExpensesTags = ref<Tag[]>([]);
     onMounted(async () => {
       const response = await http.get<{ resources: Tag[] }>('/tags', {
         kind: 'income',
         _mock: 'tagIndex',
       });
+      console.log(response);
       refIncomeTags.value = response.data.resources;
     });
-
+    const refIncomeTags = ref<Tag[]>([]);
     return () => (
       <MainLayout class={s.layout}>
         {{
@@ -41,19 +60,30 @@ export const ItemCreate = defineComponent({
             <>
               <div class={s.wrapper}>
                 <Tabs v-model:selected={refKind.value} class={s.tabs}>
-                  <Tab name="支出" class={s.tags_wrapper}>
-                    <div class={s.tag}>
-                      <div class={s.sign}>
-                        <Icon name="add" class={s.createTag} />
+                  <Tab name="支出">
+                    <div class={s.tags_wrapper}>
+                      <div class={s.tag}>
+                        <div class={s.sign}>
+                          <Icon name="add" class={s.createTag} />
+                        </div>
+                        <div class={s.name}>新增</div>
                       </div>
-                      <div class={s.name}>新增</div>
+                      {refExpensesTags.value.map((tag) => (
+                        <div class={[s.tag, s.selected]}>
+                          <div class={s.sign}>{tag.sign}</div>
+                          <div class={s.name}>{tag.name}</div>
+                        </div>
+                      ))}
                     </div>
-                    {refExpensesTags.value.map((tag) => (
-                      <div class={[s.tag, s.selected]}>
-                        <div class={s.sign}>{tag.sign}</div>
-                        <div class={s.name}>{tag.name}</div>
-                      </div>
-                    ))}
+                    <div class={s.more}>
+                      {refHasMore.value ? (
+                        <Button class={s.loadMore} onClick={onLoadMore}>
+                          加载更多
+                        </Button>
+                      ) : (
+                        <span class={s.noMore}>没有更多</span>
+                      )}
+                    </div>
                   </Tab>
                   <Tab name="收入" class={s.tags_wrapper}>
                     <div class={s.tag}>

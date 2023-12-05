@@ -31,12 +31,9 @@ const mock = (response: AxiosResponse) => {
   if (location.hostname !== 'localhost' && location.hostname !== '127.0.0.1' && location.hostname !== '192.168.3.57') {
     return false;
   }
-  console.log('response', response);
   switch (response.config?.params?._mock) {
     case 'tagIndex':
       [response.status, response.data] = mockTagIndex(response.config);
-      console.log('response');
-      console.log(response);
       return true;
     case 'session':
       [response.status, response.data] = mockSession(response.config);
