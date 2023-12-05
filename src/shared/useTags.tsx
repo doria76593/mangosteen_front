@@ -10,6 +10,7 @@ export const useTags = (fetcher: Fetcher) => {
   const tags = ref<Tag[]>([]);
 
   onMounted(async () => {
+    console.log('onMounted');
     fetchTags();
   });
   const fetchTags = async () => {

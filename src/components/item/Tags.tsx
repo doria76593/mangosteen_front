@@ -12,6 +12,9 @@ export const Tags = defineComponent({
     },
   },
   setup: (props, context) => {
+    onUpdated(() => {
+      console.log('onUpdated');
+    });
     const { tags, hasMore, page, fetchTags } = useTags((page) => {
       return http.get<Resources<Tag>>('/tags', {
         kind: props.kind,
