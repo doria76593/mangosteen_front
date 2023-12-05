@@ -7,6 +7,7 @@ import { Tabs, Tab } from '../../shared/Tabs';
 import { InputPad } from './InputPad';
 import s from './ItemCreate.module.scss';
 import { useTags } from '../../shared/useTags';
+import { AxiosResponse } from 'axios';
 export const ItemCreate = defineComponent({
   props: {
     name: {
@@ -15,7 +16,15 @@ export const ItemCreate = defineComponent({
   },
   setup: (props, context) => {
     const refKind = ref('支出');
-    const { fetchTags, page, hasMore, tags } = useTags();
+
+    const fetch1 = (page: number) => {
+      return http.get<Resources<Tag>>('/tags', {
+        kind: 'expenses',
+        _mock: 'tagIndex',
+        page: page + 1,
+      });
+    };
+    const { fetchTags, hasMore, tags } = useTags(fetch1);
 
     onMounted(async () => {
       const response = await http.get<{ resources: Tag[] }>('/tags', {

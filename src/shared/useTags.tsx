@@ -1,7 +1,10 @@
 import { onMounted, ref } from 'vue';
 import { http } from './Http';
+import { AxiosResponse } from 'axios';
 
-export const useTags = () => {
+type Fetcher = (page: number) => Promise<AxiosResponse<Resources<Tag>, any>>;
+
+export const useTags = (fetcher: Fetcher) => {
   const hasMore = ref(false);
   const page = ref(0);
   const tags = ref<Tag[]>([]);
@@ -10,12 +13,7 @@ export const useTags = () => {
     fetchTags();
   });
   const fetchTags = async () => {
-    const response = await http.get<Resources<Tag>>('/tags', {
-      kind: 'expenses',
-      _mock: 'tagIndex',
-      page: page.value + 1,
-    });
-    console.log(response);
+    const response = await fetcher(page.value);
     const { resources, pager } = response.data;
     if (pager.page == 1) {
       tags.value = resources;
