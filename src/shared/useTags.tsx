@@ -10,7 +10,6 @@ export const useTags = (fetcher: Fetcher) => {
   const tags = ref<Tag[]>([]);
 
   onMounted(async () => {
-    console.log('onMounted');
     fetchTags();
   });
   const fetchTags = async () => {
@@ -23,7 +22,6 @@ export const useTags = (fetcher: Fetcher) => {
     }
     hasMore.value = (pager.page - 1) * pager.per_page + resources.length < pager.count;
     page.value = pager.page;
-    console.log(hasMore.value);
   };
   return {
     fetchTags,
